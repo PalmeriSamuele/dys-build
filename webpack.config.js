@@ -5,22 +5,27 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/path-to-cdn/', // Set this to your CDN base path
+    publicPath: 'https://cdn.jsdelivr.net/gh/PalmeriSamuele/dys-build'
   },
   module: {
     rules: [
-      // CSS handling
+      // Handling CSS files
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // Image and other asset handling
+      // Handling image files with file-loader
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/[name][hash][ext][query]',
-        },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[hash].[ext]', // Output path and filename
+              publicPath: 'https://cdn.jsdelivr.net/gh/PalmeriSamuele/dys-build@v2.0.0/build/static/media'
+            },
+          },
+        ],
       },
     ],
   },
