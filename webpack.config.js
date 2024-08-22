@@ -21,7 +21,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'assets/[name].[hash].[ext]', // Output path and filename
+              name: 'icons/[name].[hash].[ext]', // Output path and filename
               publicPath: 'https://cdn.jsdelivr.net/gh/PalmeriSamuele/dys-build@v2.0.0/build/static/media'
             },
           },
