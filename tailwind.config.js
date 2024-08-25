@@ -1,8 +1,9 @@
 // tailwind.config.js
 module.exports = {
+  purge: ['./src/**/*.{js,jsx}', './public/index.html'],
   mode: 'jit',
   content: [
-    './src/**/*.{html,js,jsx,ts,tsx}', // Adjust paths to your source files
+    './src/**/*.{html,js,jsx}',
   ],
   theme: {
     extend: {

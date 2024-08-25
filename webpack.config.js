@@ -1,35 +1,28 @@
+// webpack.config.js
 const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: 'https://cdn.jsdelivr.net/gh/PalmeriSamuele/dys-build'
+    filename: 'indyspensable.js',
+    library: 'Indyspensable',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
-      // Handling CSS files
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      // Handling image files with file-loader
-      {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'icons/[name].[hash].[ext]', // Output path and filename
-              publicPath: 'https://cdn.jsdelivr.net/gh/PalmeriSamuele/dys-build@v2.0.0/build/static/media'
-            },
-          },
-        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader'], // This loads the CSS into the JS bundle
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx'], // Automatically resolve these extensions
   },
 };
